@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url('../assets/fondoCancha.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contenedor {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #00ff99;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #00c896;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  margin: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #00a67e;
+}
+
+.icono-red {
+  width: 40px;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.qr {
+  width: 200px;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.6rem 0;
+  border-radius: 8px;
+  border: none;
+}

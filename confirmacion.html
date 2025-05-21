@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink | Reserva Confirmada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ECC71;
+            --primary-dark: #27AE60;
+            --white: #FFFFFF;
+            --black: #2C3E50;
+            --gray: #95A5A6;
+            --yellow: #F1C40F;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/logo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        .confirmacion-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .icono-confirmacion {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .reserva-info {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.8rem;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 0.7rem;
+            align-items: center;
+        }
+        
+        .info-label {
+            font-weight: 700;
+            color: var(--black);
+            min-width: 100px;
+            font-size: 0.95rem;
+        }
+        
+        .info-value {
+            color: var(--black);
+            font-weight: 500;
+        }
+        
+        .mensaje-confirmacion {
+            margin: 1.5rem 0;
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        .email-destacado {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        .codigo-reserva {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        .btn-inicio {
+            display: inline-block;
+            padding: 1.1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+        
+        .btn-inicio:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .confirmacion-container {
+                padding: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .icono-confirmacion {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmacion-container">
+        <div class="icono-confirmacion">✓</div>
+        <h1>¡Reserva Confirmada!</h1>
+        
+        <div class="reserva-info">
+            <div class="info-item">
+                <span class="info-label">Código:</span>
+                <span class="info-value">SPORT-<span id="codigo-reserva">X5K9</span></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Cancha:</span>
+                <span class="info-value" id="conf-cancha">Los Olivos</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Fecha:</span>
+                <span class="info-value" id="conf-fecha">20/05/2023</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Horario:</span>
+                <span class="info-value" id="conf-horario">16:00 - 17:00</span>
+            </div>
+        </div>
+        
+        <div class="mensaje-confirmacion">
+            <p>Hemos enviado un correo de confirmación a <span class="email-destacado" id="conf-email">usuario@example.com</span> con los detalles de tu reserva.</p>
+            <p>Presenta este código al llegar a la cancha:</p>
+            <div class="codigo-reserva" id="codigo-display">SPORT-X5K9</div>
+        </div>
+        
+        <a href="index.html" class="btn-inicio">Volver al Inicio</a>
+    </div>
+    
+    <script>
+        // Cargar datos de la reserva
+        window.onload = function() {
+            // Desde localStorage
+            const datosReserva = JSON.parse(localStorage.getItem('datosReserva'));
+            if(datosReserva) {
+                document.getElementById('conf-cancha').textContent = datosReserva.cancha;
+                document.getElementById('conf-fecha').textContent = datosReserva.fecha;
+                document.getElementById('conf-horario').textContent = datosReserva.horario;
+                document.getElementById('conf-email').textContent = datosReserva.email;
+                
+                // Generar código aleatorio
+                const codigo = 'SPORT-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+                document.getElementById('codigo-reserva').textContent = codigo;
+                document.getElementById('codigo-display').textContent = codigo;
+            }
+            
+            // Desde URL (como respaldo)
+            const params = new URLSearchParams(window.location.search);
+            if(params.get('email')) {
+                document.getElementById('conf-email').textContent = params.get('email');
+            }
+        };
+    </script>
+</body>
+</html>

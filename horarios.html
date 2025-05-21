@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink | Horarios Disponibles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ECC71;
+            --primary-dark: #27AE60;
+            --white: #bb0a0a;
+            --black: #2C3E50;
+            --gray: #95A5A6;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/logo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        header {
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .logo {
+            width: 80px;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            margin: 0;
+            color: var(--white);
+        }
+        
+        .horarios-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            width: 95%;
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .calendar-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin: 0;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.8rem;
+        }
+        
+        .time-slot {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .time-slot:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .time-slot.booked {
+            background: #E74C3C;
+            cursor: not-allowed;
+        }
+        
+        .time-slot.selected {
+            background: #F1C40F;
+            color: var(--black);
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.5);
+        }
+        
+        .confirm-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto 0;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .confirm-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="assets/logo2.png" alt="Logo SportLink" class="logo">
+        <h1>Horarios Disponibles</h1>
+    </header>
+    
+    <main>
+        <div class="horarios-container">
+            <div class="calendar-header">
+                <h2 class="calendar-title">Cancha Los Olivos</h2>
+                <div class="calendar-nav">
+                    <button class="nav-btn" id="prev-day">←</button>
+                    <span id="current-date">Hoy, 15 Jun</span>
+                    <button class="nav-btn" id="next-day">→</button>
+                </div>
+            </div>
+            
+            <div class="time-slots" id="slots-container">
+                <!-- Horarios generados dinámicamente -->
+                <div class="time-slot">8:00 AM</div>
+                <div class="time-slot">9:00 AM</div>
+                <div class="time-slot booked">10:00 AM</div>
+                <div class="time-slot">11:00 AM</div>
+                <div class="time-slot">12:00 PM</div>
+                <div class="time-slot">1:00 PM</div>
+                <div class="time-slot">2:00 PM</div>
+                <div class="time-slot booked">3:00 PM</div>
+                <div class="time-slot">4:00 PM</div>
+                <div class="time-slot">5:00 PM</div>
+                <div class="time-slot">6:00 PM</div>
+                <div class="time-slot">7:00 PM</div>
+            </div>
+            
+            <button class="confirm-btn" id="confirm-btn" onclick="confirmReservation()">CONFIRMAR HORARIO</button>
+        </div>
+    </main>
+    
+    <script>
+        // Variables globales
+        let selectedSlot = null;
+        const currentDate = new Date();
+        
+        // Función para actualizar la fecha mostrada
+        function updateDisplayDate() {
+            const options = { weekday: 'short', day: 'numeric', month: 'short' };
+            document.getElementById('current-date').textContent = 
+                currentDate.toLocaleDateString('es-ES', options);
+        }
+        
+        // Función para seleccionar horario
+        function selectTimeSlot(element, time) {
+            // Deseleccionar cualquier slot previo
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Seleccionar nuevo slot
+            element.classList.add('selected');
+            selectedSlot = time;
+            document.getElementById('confirm-btn').disabled = false;
+        }
+        
+        // Función para confirmar reserva
+        function confirmReservation() {
+            if (selectedSlot) {
+                // Codificar parámetros para URL
+                const params = new URLSearchParams();
+                params.append('cancha', 'Los Olivos');
+                params.append('fecha', currentDate.toLocaleDateString('es-ES'));
+                params.append('horario', selectedSlot);
+                params.append('precio', '45000');
+                
+                window.location.href = `reserva.html?${params.toString()}`;
+            } else {
+                alert("Por favor selecciona un horario primero");
+            }
+        }
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplayDate();
+            
+            // Asignar eventos a los slots
+            document.querySelectorAll('.time-slot:not(.booked)').forEach(slot => {
+                slot.addEventListener('click', function() {
+                    selectTimeSlot(this, this.textContent);
+                });
+            });
+            
+            // Eventos de navegación
+            document.getElementById('prev-day').addEventListener('click', function() {
+                currentDate.setDate(currentDate.getDate() - 1);
+                updateDisplayDate();
+            });
+            
+            document.getElementById('next-day').addEventListener('click', function() {
+                currentDate.setDate(currentDate.getDate() + 1);
+                updateDisplayDate();
+            });
+        });
+    </script>
+</body>
+</html>

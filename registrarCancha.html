@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink | Registrar Cancha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ECC71;
+            --primary-dark: #27AE60;
+            --white: #FFFFFF;
+            --black: #2C3E50;
+            --gray: #95A5A6;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/logo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        header {
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .logo {
+            width: 80px;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            margin: 0;
+            color: var(--white);
+        }
+        
+        .registro-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .btn-registrar {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+        }
+        
+        .btn-registrar:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        .requerido::after {
+            content: " *";
+            color: #E74C3C;
+        }
+        
+        @media (max-width: 768px) {
+            .registro-container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="assets/logo2.png" alt="Logo SportLink" class="logo">
+        <h1>Panel de Propietarios</h1>
+    </header>
+    
+    <main>
+        <div class="registro-container">
+            <h2>Registrar Nueva Cancha</h2>
+            
+            <form id="form-registro-cancha">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre-cancha" class="requerido">Nombre de la Cancha</label>
+                        <input type="text" id="nombre-cancha" placeholder="Ej: Cancha Los Olivos" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tipo-cancha" class="requerido">Tipo de Cancha</label>
+                        <select id="tipo-cancha" required>
+                            <option value="">Seleccione...</option>
+                            <option value="sintetica">Sintética</option>
+                            <option value="futbol5">Fútbol 5</option>
+                            <option value="futbol7">Fútbol 7</option>
+                            <option value="futbol11">Fútbol 11</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciudad" class="requerido">Ciudad</label>
+                        <input type="text" id="ciudad" placeholder="Ej: Cali" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="barrio" class="requerido">Barrio/Localidad</label>
+                        <input type="text" id="barrio" placeholder="Ej: San Fernando" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="direccion" class="requerido">Dirección Exacta</label>
+                        <input type="text" id="direccion" placeholder="Ej: Cra 5 #12-34" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="capacidad" class="requerido">Capacidad (personas)</label>
+                        <input type="number" id="capacidad" placeholder="Ej: 30" min="1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descripcion">Descripción (opcional)</label>
+                    <textarea id="descripcion" rows="3" placeholder="Describa las características de la cancha"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="precio-hora" class="requerido">Precio por hora ($COP)</label>
+                        <input type="number" id="precio-hora" placeholder="Ej: 45000" min="10000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="horario-apertura" class="requerido">Horario Apertura</label>
+                        <input type="time" id="horario-apertura" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="horario-cierre" class="requerido">Horario Cierre</label>
+                        <input type="time" id="horario-cierre" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fotos">Fotos de la Cancha (opcional)</label>
+                    <input type="file" id="fotos" accept="image/*" multiple>
+                </div>
+                
+                <button type="submit" class="btn-registrar">REGISTRAR CANCHA</button>
+            </form>
+        </div>
+    </main>
+    
+    <script>
+        document.getElementById('form-registro-cancha').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar campos requeridos
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#E74C3C';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Por favor complete todos los campos requeridos');
+                return;
+            }
+            
+            // Crear objeto con los datos de la cancha
+            const canchaData = {
+                nombre: document.getElementById('nombre-cancha').value,
+                tipo: document.getElementById('tipo-cancha').value,
+                ubicacion: {
+                    ciudad: document.getElementById('ciudad').value,
+                    barrio: document.getElementById('barrio').value,
+                    direccion: document.getElementById('direccion').value
+                },
+                capacidad: document.getElementById('capacidad').value,
+                descripcion: document.getElementById('descripcion').value,
+                precio: document.getElementById('precio-hora').value,
+                horario: {
+                    apertura: document.getElementById('horario-apertura').value,
+                    cierre: document.getElementById('horario-cierre').value
+                },
+                fotos: document.getElementById('fotos').files
+            };
+            
+            // Aquí iría la lógica para enviar los datos al servidor
+            console.log('Datos de cancha a registrar:', canchaData);
+            
+            // Simular envío exitoso
+            alert('Cancha registrada exitosamente!');
+            
+            // Redirigir al panel de control (simulado)
+            setTimeout(() => {
+                window.location.href = 'panel-propietario.html';
+            }, 1500);
+        });
+        
+        // Validación en tiempo real para campos requeridos
+        document.querySelectorAll('[required]').forEach(field => {
+            field.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

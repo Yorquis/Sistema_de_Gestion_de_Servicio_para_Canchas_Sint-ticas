@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink | Gestión de Canchas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ECC71;
+            --primary-dark: #27AE60;
+            --white: #FFFFFF;
+            --black: #2C3E50;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('assets/logo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        header {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin: 0;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .boton {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            border: 2px solid transparent;
+        }
+        
+        .boton:hover {
+            background: transparent;
+            border-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+        }
+        
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .redes-sociales {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .red-social {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+        
+        .red-social:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .boton {
+                padding: 0.8rem 1.5rem;
+                min-width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="assets/logo2.png" alt="Logo SportLink" class="logo">
+        <h1>Bienvenido a SportLink</h1>
+    </header>
+    
+    <main>
+        <section id="menu-principal">
+            <h2>Menú Principal</h2>
+            <a href="registrarCancha.html" class="boton">Registrar Cancha</a>
+            <a href="login.html" class="boton">Iniciar Sesión</a>
+            <a href="horarios.html" class="boton" style="background: #F1C40F; color: var(--black);">Ver Canchas Disponibles</a>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Síguenos en nuestras redes sociales:</p>
+        <div class="redes-sociales">
+            <a href="#"><img src="assets/Facebook.png" alt="Facebook" class="red-social"></a>
+            <a href="#"><img src="assets/Instagram.png" alt="Instagram" class="red-social"></a>
+            <a href="#"><img src="assets/whatsapp.png" alt="WhatsApp" class="red-social"></a>
+        </div>
+    </footer>
+</body>
+</html>
